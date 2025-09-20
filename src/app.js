@@ -66,6 +66,18 @@ app.get('/users', (req, res) => {
    res.status(200).json(resultados);
 });
 
+// req.headers
+
+app.get('/check-headers', (req, res) => {
+  const token = req.headers['authorization'];
+
+  if (!token) {
+    return res.status(401).send("No autorizado: falta token");
+  }
+
+  res.status(200).send(`Token recibido: ${token}`);
+});
+
 // POST
 
 
