@@ -30,19 +30,29 @@ const UsersJSON = [
 
 // Metodos GET & Parametros  y Query Strings
 
+// USERS
 app.get('/users', (req, res) => {
-  res.json(UsersJSON)
-});
+  const { id, username, email, created_at } = req.query;
 
-app.get('/users/:id', (req, res) => {
-  const userID = parseInt(req.params.id);
-  const user = UsersJSON.find(u => u.id === userID)
+  let resultados = UsersJSON;
 
-  if (user) {
-  res.json(user);
-  } else {
-    res.status(404).json({ mensaje: `Usuario con id ${userID} no encontrado` });
+  if (id) {
+    resultados = resultados.filter(u => u.id === parseInt(id));
   }
+
+  if (username) {
+    resultados = resultados.filter(u => u.username.includes(username));
+  }
+
+  if (email) {
+    resultados = resultados.filter(u => u.email.includes(email));
+  }
+
+  if (created_at) {
+    resultados = resultados.filter(u => u.created_at.includes(created_at));
+  }
+
+  res.json(resultados);
 });
 
 
