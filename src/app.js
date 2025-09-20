@@ -78,6 +78,58 @@ app.get('/check-headers', (req, res) => {
   res.status(200).send(`Token recibido: ${token}`);
 });
 
+// Cabeceras HTTP
+
+app.post('/upload', (req, res) => {
+  // Cabeceras de contenido
+  const contentLength = req.get('Content-Length');
+  const contentType = req.get('Content-Type');
+
+  // Cabeceras de cliente
+  const userAgent = req.get('User-Agent');
+  const referer = req.get('Referer');
+
+  // Cabeceras de cache
+  const cacheControl = req.get('Cache-Control');
+  const ifModifiedSince = req.get('If-Modified-Since');
+
+  console.log(`Recibiendo ${contentLength} bytes de tipo ${contentType}`);
+
+  res.json({
+    received: true,
+    size: contentLength,
+    type: contentType,
+    client: userAgent
+  });
+});
+
+app.get('/data', (req, res) => {
+  res.set('Content-Type', 'application/json'); 
+  res.set('Cache-Control', 'no-store');
+
+  res.status(200).json({ mensaje: "Datos enviados con cabeceras" });
+});
+
+// Middleware simple que revisa cabecera personalizada
+app.use((req, res, next) => {
+  const apiKey = req.get('X-API-Key');
+
+  if (!apiKey || apiKey !== "12345") {
+    return res.status(401).json({ error: "No autorizado, falta o es incorrecta la API Key" });
+  }
+
+  next();
+});
+
+// Ruta protegida con cabecera
+app.get('/secure-data', (req, res) => {
+  res.set('X-Powered-By', 'Express-Learning'); // cabecera personalizada en la respuesta
+  res.json({ secreto: "Este es un dato protegido 🎉" });
+});
+
+
+// Estados HTTP
+
 // POST
 
 
