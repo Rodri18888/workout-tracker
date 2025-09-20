@@ -2,6 +2,7 @@ const express = require("express"); // Import express
 const app = express(); // Create an instance of express
 const { port } = require('../config/env'); // Import the port from the env file
 app.use(express.json()); // Para JSON
+app.use(express.urlencoded({ extended: true })); // Para formularios
 
 // Inicializacion del servidor y primera ruta
 app.get("/", (req, res) => {
@@ -111,7 +112,7 @@ app.get('/data', (req, res) => {
 });
 
 // Middleware simple que revisa cabecera personalizada
-app.use((req, res, next) => {
+function checkApiKey(req, res, next) {
   const apiKey = req.get('X-API-Key');
 
   if (!apiKey || apiKey !== "12345") {
@@ -119,7 +120,7 @@ app.use((req, res, next) => {
   }
 
   next();
-});
+}
 
 // Ruta protegida con cabecera
 app.get('/secure-data', (req, res) => {
@@ -128,9 +129,31 @@ app.get('/secure-data', (req, res) => {
 });
 
 
-// Estados HTTP
-
 // POST
+
+app.post('/users', (req, res) => {
+  const { username, email, password } = req.body;
+
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+
+  const newUser = {
+    id: UsersJSON.length + 1,
+    username,
+    email,
+    password,
+    created_at: new Date().toISOString()
+  };
+
+  UsersJSON.push(newUser);
+
+  res.status(201).json({ message: "Usuario creado", user: newUser });
+});
+
+// PUT y PATCH
+
+// DELETE
 
 
 
