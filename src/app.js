@@ -28,10 +28,21 @@ const UsersJSON = [
 ];
 
 
-// Metodos GET
+// Metodos GET & Parametros  y Query Strings
 
 app.get('/users', (req, res) => {
   res.json(UsersJSON)
+});
+
+app.get('/users/:id', (req, res) => {
+  const userID = parseInt(req.params.id);
+  const user = UsersJSON.find(u => u.id === userID)
+
+  if (user) {
+  res.json(user);
+  } else {
+    res.status(404).json({ mensaje: `Usuario con id ${userID} no encontrado` });
+  }
 });
 
 
