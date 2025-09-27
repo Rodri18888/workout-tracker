@@ -60,6 +60,55 @@ const createUser = (req, res) => {
 
 // Metodos PUT y PATCH
 
+// PUT
+
+const updateUser = (req, res) => {
+    const userId = parseInt(req.params.id);
+    const { username, email, password } = req.body;
+
+    const userIndex = UsersJSON.findIndex(u => u.id === userId);
+
+    if (userIndex === -1) {
+        return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    if (!username || !email || !password ) {
+        return res.status(400).json({ error: "Faltan datos obligatorios" });
+    }
+
+    UsersJSON[userIndex] = {
+        id: userId,
+        username,
+        email,
+        password,
+        created_at: UsersJSON[userIndex].created_at
+    };
+
+    res.status(200).json({ message: "Usuario actualizado (PUT)", user: UsersJSON[userIndex] });
+}
+
+
+// PATCH
+
+const patchUser = (req, res) => {
+  const userId = parseInt(req.params.id);
+  const { username, email, password } = req.body;
+
+  const user = UsersJSON.find(u => u.id === userId);
+
+  if (!user) {
+    return res.status(404).json({ error: "Usuario no encontrado" });
+  }
+
+  if (username) user.username = username;
+  if (email) user.email = email;
+  if (password) user.password = password;
+
+  res.status(200).json({ message: "Usuario actualizado parcialmente (PATCH)", user });
+};
+
 // Metodo DELETE
 
-module.exports = { getUserById, getUsers, createUser };
+
+// Exportacion
+module.exports = { getUserById, getUsers, createUser, updateUser, patchUser };
