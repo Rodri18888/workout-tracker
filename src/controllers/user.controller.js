@@ -36,4 +36,30 @@ const getUsers = (req, res) => {
   res.status(200).json(resultados);
 };
 
-module.exports = { getUserById, getUsers };
+// Metodo POST
+
+const createUser = (req, res) => {
+  const { username, email, password } = req.body;
+
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+
+  const newUser = {
+    id: UsersJSON.length + 1,
+    username,
+    email,
+    password,
+    created_at: new Date().toISOString()
+  };
+
+  UsersJSON.push(newUser);
+
+  res.status(201).json({ message: "Usuario creado", user: newUser });
+};
+
+// Metodos PUT y PATCH
+
+// Metodo DELETE
+
+module.exports = { getUserById, getUsers, createUser };
