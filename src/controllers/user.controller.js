@@ -66,9 +66,9 @@ const updateUser = (req, res) => {
     const userId = parseInt(req.params.id);
     const { username, email, password } = req.body;
 
-    const userIndex = UsersJSON.findIndex(u => u.id === userId);
+    const user = UsersJSON.findIndex(u => u.id === userId);
 
-    if (userIndex === -1) {
+    if (user === -1) {
         return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
@@ -76,7 +76,7 @@ const updateUser = (req, res) => {
         return res.status(400).json({ error: "Faltan datos obligatorios" });
     }
 
-    UsersJSON[userIndex] = {
+    UsersJSON[user] = {
         id: userId,
         username,
         email,
@@ -84,7 +84,7 @@ const updateUser = (req, res) => {
         created_at: UsersJSON[userIndex].created_at
     };
 
-    res.status(200).json({ message: "Usuario actualizado (PUT)", user: UsersJSON[userIndex] });
+    res.status(200).json({ message: "Usuario actualizado (PUT)", user: UsersJSON[user] });
 }
 
 
@@ -109,6 +109,21 @@ const patchUser = (req, res) => {
 
 // Metodo DELETE
 
+const deleteUser = (req, res) => {
+  const userId = parseInt(req.params.id);
+
+  const user = UsersJSON.findIndex(u => u.id === userId);
+
+  if (user === -1) {
+    return res.status(404).json({ error: "Usuario no encontrado" });
+  }
+
+  UsersJSON.splice(user, 1);
+
+  res.status(204).send();
+};
+
+
 
 // Exportacion
-module.exports = { getUserById, getUsers, createUser, updateUser, patchUser };
+module.exports = { getUserById, getUsers, createUser, updateUser, patchUser, deleteUser };
