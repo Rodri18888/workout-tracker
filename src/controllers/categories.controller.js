@@ -46,6 +46,31 @@ const createCategory = (req, res) => {
   res.status(201).json({ message: "Categoria creada", category: newCategory });
 };
 
+// Metodo PUT
+
+const updateCategory = (req, res) => {
+    const categoryId = parseInt(req.params.id);
+    const { name_category } = req.body;
+
+    const category = CategoriesJSON.findIndex(u => u.id === categoryId);
+
+    if (category === -1) {
+        return res.status(404).json({ error: "Categoria no encontrada" });
+    }
+
+    if (!name_category ) {
+        return res.status(400).json({ error: "Faltan datos obligatorios" });
+    }
+
+    UsersJSON[user] = {
+        id: categoryId,
+        name_category
+    };
+
+    res.status(200).json({ message: "Categoria actualizada (PUT)", category: CategoriesJSON[category] });
+}
+
+
 // Exportacion
 
-module.exports = { getCategoryById, getCategories, createCategory }
+module.exports = { getCategoryById, getCategories, createCategory, updateCategory }
