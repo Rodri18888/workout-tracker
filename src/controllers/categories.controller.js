@@ -27,6 +27,25 @@ const getCategories = (req, res) => {
 };
 
 
+// Metodo POST
+
+const createCategory = (req, res) => {
+  const { name_category } = req.body;
+
+  if (!name_category) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+
+  const newCategory = {
+    id: UsersJSON.length + 1,
+    name_category
+  };
+
+  UsersJSON.push(newCategory);
+
+  res.status(201).json({ message: "Categoria creada", category: newCategory });
+};
+
 // Exportacion
 
-module.exports = { getCategoryById, getCategories }
+module.exports = { getCategoryById, getCategories, createCategory }
