@@ -70,7 +70,23 @@ const updateCategory = (req, res) => {
     res.status(200).json({ message: "Categoria actualizada (PUT)", category: CategoriesJSON[category] });
 }
 
+// Metodo DELETE
+
+const deleteCategory = (req, res) => {
+  const categoryId = parseInt(req.params.id);
+
+  const user = CategoriesJSON.findIndex(u => u.id === categoryId);
+
+  if (user === -1) {
+    return res.status(404).json({ error: "Categoria no encontrada" });
+  }
+
+  UsersJSON.splice(category, 1);
+
+  res.status(204).send();
+};
+
 
 // Exportacion
 
-module.exports = { getCategoryById, getCategories, createCategory, updateCategory }
+module.exports = { getCategoryById, getCategories, createCategory, updateCategory, deleteCategory }
