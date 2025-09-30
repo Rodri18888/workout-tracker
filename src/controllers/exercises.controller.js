@@ -119,5 +119,20 @@ const patchExercise = (req, res) => {
   res.status(200).json({ message: "Ejercicio actualizado parcialmente (PATCH)", exercise });
 };
 
+// Metodo DELETE
+const deleteExercise = (req, res) => {
+  const exerciseId = parseInt(req.params.id);
+
+  const index = ExercisesJSON.findIndex(e => e.id === exerciseId);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Ejercicio no encontrado" });
+  }
+
+  ExercisesJSON.splice(index, 1);
+
+  res.status(204).send();
+};
+
 // Exportación
 module.exports = { getExerciseById, getExercises, createExercise, updateExercise, patchExercise, deleteExercise };
