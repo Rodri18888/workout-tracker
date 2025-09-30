@@ -45,5 +45,29 @@ const createMuscle_group = (req, res) => {
   res.status(201).json({ message: "Grupo muscular creado", muscle_group: newMuscle_group });
 };
 
+// Metodo PUT
+
+const updateMuscle_group = (req, res) => {
+    const muscle_groupsId = parseInt(req.params.id);
+    const { name_muscle_group } = req.body;
+
+    const muscle_group = Muscle_groupsJSON.findIndex(u => u.id === muscle_groupsId);
+
+    if (muscle_group === -1) {
+        return res.status(404).json({ error: "Grupo muscular no encontrado" });
+    }
+
+    if (!name_muscle_group) {
+        return res.status(400).json({ error: "Faltan datos obligatorios" });
+    }
+
+    Muscle_groupsJSON[muscle_group] = {
+        id: muscle_groupsId,
+        name_muscle_group
+    };
+
+    res.status(200).json({ message: "Grupo muscular actualizado (PUT)", muscle_group: Muscle_groupsJSON[muscle_group] });
+}
+
 // Exportacion
-module.exports = { getMuscle_groupById, getMuscle_groups, createMuscle_group };
+module.exports = { getMuscle_groupById, getMuscle_groups, createMuscle_group, updateMuscle_group };
