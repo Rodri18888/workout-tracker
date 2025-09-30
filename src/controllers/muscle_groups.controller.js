@@ -26,5 +26,24 @@ const getMuscle_groups = (req, res) => {
   res.status(200).json(resultados);
 };
 
+// Metodo POST
+
+const createMuscle_group = (req, res) => {
+  const { name_muscle_group } = req.body;
+
+  if (!name_muscle_group) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+
+  const newMuscle_group = {
+    id: Muscle_groupsJSON.length + 1,
+    name_muscle_group
+  };
+
+  Muscle_groupsJSON.push(newMuscle_group);
+
+  res.status(201).json({ message: "Grupo muscular creado", muscle_group: newMuscle_group });
+};
+
 // Exportacion
-module.exports = { getMuscle_groupById, getMuscle_groups };
+module.exports = { getMuscle_groupById, getMuscle_groups, createMuscle_group };
