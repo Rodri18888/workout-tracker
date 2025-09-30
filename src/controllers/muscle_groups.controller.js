@@ -69,5 +69,21 @@ const updateMuscle_group = (req, res) => {
     res.status(200).json({ message: "Grupo muscular actualizado (PUT)", muscle_group: Muscle_groupsJSON[muscle_group] });
 }
 
+// Metodo DELETE
+
+const deleteMuscle_group = (req, res) => {
+  const muscle_groupsId = parseInt(req.params.id);
+
+  const index = Muscle_groupsJSON.findIndex(u => u.id === muscle_groupsId);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Grupo muscular no encontrado" });
+  }
+
+  Muscle_groupsJSON.splice(index, 1);
+
+  res.status(200).json({ message: "Grupo muscular eliminado" });
+};
+
 // Exportacion
-module.exports = { getMuscle_groupById, getMuscle_groups, createMuscle_group, updateMuscle_group };
+module.exports = { getMuscle_groupById, getMuscle_groups, createMuscle_group, updateMuscle_group, deleteMuscle_group };
