@@ -38,6 +38,32 @@ const getExercises = (req, res) => {
   res.status(200).json(resultados);
 };
 
+// Metodo POST
+const createExercise = (req, res) => {
+  const { name, category, muscle_group, description, equipment, difficulty, duration, repetitions, sets } = req.body;
+
+  if (!name || !category || !muscle_group || !description || !equipment || !difficulty || !duration || !repetitions || !sets) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+
+  const newExercise = {
+    id: ExercisesJSON.length + 1,
+    name,
+    category,
+    muscle_group,
+    description,
+    equipment,
+    difficulty,
+    duration,
+    repetitions,
+    sets
+  };
+
+  ExercisesJSON.push(newExercise);
+
+  res.status(201).json({ message: "Ejercicio creado", exercise: newExercise });
+};
+
 
 // Exportación
 module.exports = { getExerciseById, getExercises, createExercise, updateExercise, patchExercise, deleteExercise };
