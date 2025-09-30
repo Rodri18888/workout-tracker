@@ -8,8 +8,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Importar rutas
 const userRoutes = require("./routes/v1/users.routes");
-const categoriesRoutes = require("./routes/v1/categories.routes");
-
 const headersRoutes = require("./routes/v1/headers.routes");
 const uploadRoutes = require("./routes/v1/upload.routes");
 const secureRoutes = require("./routes/v1/secure.routes");
@@ -21,9 +19,6 @@ app.get("/", (req, res) => {
 
 // Montar routers
 app.use("/users", userRoutes);
-app.use("/categories", categoriesRoutes)
-
-
 app.use("/headers", headersRoutes);
 app.use("/files", uploadRoutes);
 app.use("/auth", secureRoutes);
