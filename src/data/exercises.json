@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Pull-ups",
+    "category": 1,
+    "muscle_group": 1,
+    "description": "An upper body exercise where you pull yourself up using a bar until your chin is above the bar.",
+    "equipment": "Pull-up bar",
+    "difficulty": "Hard",
+    "duration": "30s",
+    "repetitions": 10,
+    "sets": 3
+  },
+  {
+    "id": 2,
+    "name": "Squats",
+    "category": 1,
+    "muscle_group": 2,
+    "description": "A lower body exercise that targets the legs by lowering your hips and standing back up.",
+    "equipment": "Bodyweight",
+    "difficulty": "Medium",
+    "duration": "45s",
+    "repetitions": 12,
+    "sets": 4
+  },
+  {
+    "id": 3,
+    "name": "Glute Bridge",
+    "category": 1,
+    "muscle_group": 3,
+    "description": "Exercise performed lying on your back and lifting hips off the ground to engage glutes.",
+    "equipment": "Mat",
+    "difficulty": "Easy",
+    "duration": "30s",
+    "repetitions": 15,
+    "sets": 3
+  },
+  {
+    "id": 4,
+    "name": "Bicep Curls",
+    "category": 1,
+    "muscle_group": 4,
+    "description": "Weight training exercise where you curl a dumbbell to strengthen the biceps.",
+    "equipment": "Dumbbells",
+    "difficulty": "Medium",
+    "duration": "20s",
+    "repetitions": 12,
+    "sets": 3
+  },
+  {
+    "id": 5,
+    "name": "Tricep Dips",
+    "category": 1,
+    "muscle_group": 5,
+    "description": "Bodyweight exercise performed on parallel bars or a bench to target triceps.",
+    "equipment": "Bench or parallel bars",
+    "difficulty": "Medium",
+    "duration": "25s",
+    "repetitions": 12,
+    "sets": 3
+  },
+  {
+    "id": 6,
+    "name": "Push-ups",
+    "category": 1,
+    "muscle_group": 6,
+    "description": "A bodyweight exercise performed face down, raising and lowering the body using arms.",
+    "equipment": "Bodyweight",
+    "difficulty": "Medium",
+    "duration": "30s",
+    "repetitions": 15,
+    "sets": 3
+  },
+  {
+    "id": 7,
+    "name": "Shoulder Press",
+    "category": 1,
+    "muscle_group": 7,
+    "description": "An exercise where weights are pressed overhead to strengthen shoulders.",
+    "equipment": "Dumbbells or barbell",
+    "difficulty": "Hard",
+    "duration": "25s",
+    "repetitions": 10,
+    "sets": 3
+  },
+  {
+    "id": 8,
+    "name": "Wrist Curls",
+    "category": 1,
+    "muscle_group": 8,
+    "description": "An isolation exercise to strengthen the forearm muscles by curling the wrist.",
+    "equipment": "Dumbbell or barbell",
+    "difficulty": "Easy",
+    "duration": "20s",
+    "repetitions": 15,
+    "sets": 3
+  },
+  {
+    "id": 9,
+    "name": "Yoga Stretch",
+    "category": 2,
+    "muscle_group": 2,
+    "description": "Flexibility exercise that involves stretching poses to improve mobility.",
+    "equipment": "Yoga mat",
+    "difficulty": "Easy",
+    "duration": "60s",
+    "repetitions": 1,
+    "sets": 3
+  },
+  {
+    "id": 10,
+    "name": "Jump Rope",
+    "category": 3,
+    "muscle_group": 2,
+    "description": "Cardio exercise performed by jumping continuously over a rope.",
+    "equipment": "Jump rope",
+    "difficulty": "Medium",
+    "duration": "120s",
+    "repetitions": 50,
+    "sets": 5
+  }
+]
