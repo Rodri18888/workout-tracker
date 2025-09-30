@@ -28,6 +28,7 @@ const getCategories = (req, res) => {
 
 
 // Metodo POST
+
 const createCategory = (req, res) => {
   const { name_category } = req.body;
 
@@ -36,52 +37,55 @@ const createCategory = (req, res) => {
   }
 
   const newCategory = {
-    id: CategoriesJSON.length + 1,
+    id: UsersJSON.length + 1,
     name_category
   };
 
-  CategoriesJSON.push(newCategory);
+  UsersJSON.push(newCategory);
 
   res.status(201).json({ message: "Categoria creada", category: newCategory });
 };
 
 // Metodo PUT
+
 const updateCategory = (req, res) => {
-  const categoryId = parseInt(req.params.id);
-  const { name_category } = req.body;
+    const categoryId = parseInt(req.params.id);
+    const { name_category } = req.body;
 
-  const index = CategoriesJSON.findIndex(u => u.id === categoryId);
+    const category = CategoriesJSON.findIndex(u => u.id === categoryId);
 
-  if (index === -1) {
-    return res.status(404).json({ error: "Categoria no encontrada" });
-  }
+    if (category === -1) {
+        return res.status(404).json({ error: "Categoria no encontrada" });
+    }
 
-  if (!name_category) {
-    return res.status(400).json({ error: "Faltan datos obligatorios" });
-  }
+    if (!name_category ) {
+        return res.status(400).json({ error: "Faltan datos obligatorios" });
+    }
 
-  CategoriesJSON[index] = {
-    id: categoryId,
-    name_category
-  };
+    UsersJSON[user] = {
+        id: categoryId,
+        name_category
+    };
 
-  res.status(200).json({ message: "Categoria actualizada (PUT)", category: CategoriesJSON[index] });
-};
+    res.status(200).json({ message: "Categoria actualizada (PUT)", category: CategoriesJSON[category] });
+}
 
 // Metodo DELETE
+
 const deleteCategory = (req, res) => {
   const categoryId = parseInt(req.params.id);
 
-  const index = CategoriesJSON.findIndex(u => u.id === categoryId);
+  const user = CategoriesJSON.findIndex(u => u.id === categoryId);
 
-  if (index === -1) {
+  if (user === -1) {
     return res.status(404).json({ error: "Categoria no encontrada" });
   }
 
-  CategoriesJSON.splice(index, 1);
+  UsersJSON.splice(category, 1);
 
-  res.status(200).json({ message: "Categoria eliminada" });
+  res.status(204).send();
 };
+
 
 // Exportacion
 
