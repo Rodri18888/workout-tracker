@@ -28,7 +28,6 @@ const getCategories = (req, res) => {
 
 
 // Metodo POST
-
 const createCategory = (req, res) => {
   const { name_category } = req.body;
 
@@ -37,55 +36,52 @@ const createCategory = (req, res) => {
   }
 
   const newCategory = {
-    id: UsersJSON.length + 1,
+    id: CategoriesJSON.length + 1,
     name_category
   };
 
-  UsersJSON.push(newCategory);
+  CategoriesJSON.push(newCategory);
 
   res.status(201).json({ message: "Categoria creada", category: newCategory });
 };
 
 // Metodo PUT
-
 const updateCategory = (req, res) => {
-    const categoryId = parseInt(req.params.id);
-    const { name_category } = req.body;
-
-    const category = CategoriesJSON.findIndex(u => u.id === categoryId);
-
-    if (category === -1) {
-        return res.status(404).json({ error: "Categoria no encontrada" });
-    }
-
-    if (!name_category ) {
-        return res.status(400).json({ error: "Faltan datos obligatorios" });
-    }
-
-    UsersJSON[user] = {
-        id: categoryId,
-        name_category
-    };
-
-    res.status(200).json({ message: "Categoria actualizada (PUT)", category: CategoriesJSON[category] });
-}
-
-// Metodo DELETE
-
-const deleteCategory = (req, res) => {
   const categoryId = parseInt(req.params.id);
+  const { name_category } = req.body;
 
-  const user = CategoriesJSON.findIndex(u => u.id === categoryId);
+  const index = CategoriesJSON.findIndex(u => u.id === categoryId);
 
-  if (user === -1) {
+  if (index === -1) {
     return res.status(404).json({ error: "Categoria no encontrada" });
   }
 
-  UsersJSON.splice(category, 1);
+  if (!name_category) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
 
-  res.status(204).send();
+  CategoriesJSON[index] = {
+    id: categoryId,
+    name_category
+  };
+
+  res.status(200).json({ message: "Categoria actualizada (PUT)", category: CategoriesJSON[index] });
 };
 
+// Metodo DELETE
+const deleteCategory = (req, res) => {
+  const categoryId = parseInt(req.params.id);
+
+  const index = CategoriesJSON.findIndex(u => u.id === categoryId);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Categoria no encontrada" });
+  }
+
+  CategoriesJSON.splice(index, 1);
+
+  res.status(200).json({ message: "Categoria eliminada" });
+};
 
 // Exportacion
 
