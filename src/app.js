@@ -11,6 +11,9 @@ const userRoutes = require("./routes/v1/users.routes");
 const categoriesRoutes = require("./routes/v1/categories.routes");
 const muscle_groupsRoutes = require("./routes/v1/muscle_groups.routes");
 const exercisesRoutes = require("./routes/v1/exercises.routes");
+const workoutsRoutes = require("./routes/v1/workouts.routes");
+const reportsRoutes = require("./routes/v1/reports.routes");
+
 
 
 const headersRoutes = require("./routes/v1/headers.routes");
@@ -27,6 +30,9 @@ app.use("/users", userRoutes);
 app.use("/categories", categoriesRoutes);
 app.use("/muscle_groups", muscle_groupsRoutes);
 app.use("/exercises", exercisesRoutes);
+app.use("/workouts", workoutsRoutes);
+app.use("/reports", reportsRoutes);
+
 
 
 app.use("/headers", headersRoutes);
