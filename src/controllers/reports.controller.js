@@ -33,3 +33,25 @@ const getReports = (req, res) => {
 
   res.status(200).json(resultados);
 };
+
+// Metodo POST
+const createReport = (req, res) => {
+    const { user_id, workout_id, calories_burned, progress } = req.body;
+  
+    if (!user_id || !workout_id || !calories_burned || !progress) {
+      return res.status(400).json({ error: "Faltan datos obligatorios" });
+    }
+  
+    const newReport = {
+      id: ReportsJSON.length + 1,
+      user_id,
+      workout_id,
+      calories_burned,
+      progress,
+      created_at: new Date().toISOString()
+    };
+  
+    ReportsJSON.push(newReport);
+  
+    res.status(201).json({ message: "Reporte creado", report: newReport });
+  };
