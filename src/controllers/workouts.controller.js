@@ -33,3 +33,25 @@ const getWorkouts = (req, res) => {
 
   res.status(200).json(resultados);
 };
+
+// Metodo POST
+const createWorkout = (req, res) => {
+    const { user_id, name, exercises, duration, date } = req.body;
+  
+    if (!user_id || !name || !exercises || !duration || !date) {
+      return res.status(400).json({ error: "Faltan datos obligatorios" });
+    }
+  
+    const newWorkout = {
+      id: WorkoutsJSON.length + 1,
+      user_id,
+      name,
+      exercises,
+      duration,
+      date
+    };
+  
+    WorkoutsJSON.push(newWorkout);
+  
+    res.status(201).json({ message: "Workout creado", workout: newWorkout });
+  };
