@@ -102,3 +102,21 @@ const updateWorkout = (req, res) => {
   
     res.status(200).json({ message: "Workout actualizado parcialmente (PATCH)", workout });
   };
+
+  // Metodo DELETE
+const deleteWorkout = (req, res) => {
+    const workoutId = parseInt(req.params.id);
+  
+    const index = WorkoutsJSON.findIndex(w => w.id === workoutId);
+  
+    if (index === -1) {
+      return res.status(404).json({ error: "Workout no encontrado" });
+    }
+  
+    WorkoutsJSON.splice(index, 1);
+  
+    res.status(204).send();
+  };
+  
+  // Exportación
+  module.exports = { getWorkoutById, getWorkouts, createWorkout, updateWorkout, patchWorkout, deleteWorkout };
