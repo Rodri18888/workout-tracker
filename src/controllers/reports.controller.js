@@ -101,3 +101,21 @@ const updateReport = (req, res) => {
   
     res.status(200).json({ message: "Reporte actualizado parcialmente (PATCH)", report });
   };
+
+  // Metodo DELETE
+const deleteReport = (req, res) => {
+    const reportId = parseInt(req.params.id);
+  
+    const index = ReportsJSON.findIndex(r => r.id === reportId);
+  
+    if (index === -1) {
+      return res.status(404).json({ error: "Reporte no encontrado" });
+    }
+  
+    ReportsJSON.splice(index, 1);
+  
+    res.status(204).send();
+  };
+  
+  // Exportación
+  module.exports = { getReportById, getReports, createReport, updateReport, patchReport, deleteReport};
