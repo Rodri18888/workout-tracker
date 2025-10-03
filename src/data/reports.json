@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "user_id": 1,
+      "workout_id": 1,
+      "calories_burned": 450,
+      "progress": "completed",
+      "created_at": "2025-09-30T11:00:00Z"
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "workout_id": 2,
+      "calories_burned": 380,
+      "progress": "completed",
+      "created_at": "2025-10-01T09:30:00Z"
+    },
+    {
+      "id": 3,
+      "user_id": 3,
+      "workout_id": 3,
+      "calories_burned": 320,
+      "progress": "in-progress",
+      "created_at": "2025-10-02T18:45:00Z"
+    },
+    {
+      "id": 4,
+      "user_id": 1,
+      "workout_id": 4,
+      "calories_burned": 500,
+      "progress": "completed",
+      "created_at": "2025-10-03T07:45:00Z"
+    },
+    {
+      "id": 5,
+      "user_id": 2,
+      "workout_id": 1,
+      "calories_burned": 200,
+      "progress": "skipped",
+      "created_at": "2025-10-04T10:15:00Z"
+    }
+  ]
+  
